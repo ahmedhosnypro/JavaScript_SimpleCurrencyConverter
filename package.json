@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "readline-sync": "^1.4.10",
     "sync-input": "https://github.com/hyperskill/sync-input/archive/v1.tar.gz"
   }
 }
