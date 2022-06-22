@@ -1,11 +1,7 @@
 let input = require('sync-input');
 
 let currencies = {
-    USD: 1,
-    JPY: 113.5,
-    EUR: 0.89,
-    RUB: 74.36,
-    GBP: 0.75
+    USD: 1, JPY: 113.5, EUR: 0.89, RUB: 74.36, GBP: 0.75
 }
 
 console.log(`Welcome to Currency Converter!
@@ -14,10 +10,15 @@ console.log(`Welcome to Currency Converter!
 1 USD equals  0.89 EUR
 1 USD equals  74.36 RUB
 1 USD equals  0.75 GBP
-I can convert USD to these currencies: JPY, EUR, RUB, USD, GBP
-Type the currency you wish to convert: USD`);
+What do you want to convert?`);
 
-let to = input("To:").toUpperCase();
+let from = input("From:").toUpperCase().trim();
+if (!(from in currencies)) {
+    console.log("Unknown currency");
+    return;
+}
+
+let to = input("To:").toUpperCase().trim();
 if (!(to in currencies)) {
     console.log("Unknown currency");
     return;
@@ -32,4 +33,4 @@ if (amount < 1) {
     return;
 }
 
-console.log(`Result: ${amount} USD equals ${(currencies[to] * amount).toFixed(4)} ${to}`);
+console.log(`Result: ${amount} ${from} equals ${((1 / currencies[from]) * (currencies[to] * amount)).toFixed(4)} ${to}`);
